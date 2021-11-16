@@ -1,11 +1,11 @@
 async function logout() {
-    const response = await fetch('/api/doctor/logout', {
+    const response = await fetch('/api/nurse/logout', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' }
     });
   
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/home');
     } else {
       alert(response.statusText);
     }

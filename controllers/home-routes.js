@@ -2,8 +2,37 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {Doctor, Nurse, Patient} = require('../models');
 
-//Home page route(###currently connected to Doctor###)
-router.get('/', (req, res) => {
+//Homepage route
+router.get('/home', (req, res) => {
+  res.render('homepage')
+})
+
+//Doctor Login route
+router.get('/doc-login', (req, res) => {
+  // if(req.session.loggedIn) {
+  //   res.redirect('/');
+  //   return;
+  // }
+    res.render('doc-login');
+});
+
+//Nurse Login route
+router.get('/nur-login', (req, res) => {
+  res.render('nur-login');
+})
+
+//Doctor Sign-up route
+router.get('/doc-signup', (req, res) => {
+  res.render('doc-signup')
+})
+
+//Nurse Sign-up route
+router.get('/nur-signup', (req, res) => {
+  res.render('nur-signup')
+})
+
+//Doctor Profile route
+router.get('/doc-profile', (req, res) => {
   Doctor.findAll({
       attributes: [
           'id',
@@ -29,7 +58,7 @@ router.get('/', (req, res) => {
   .then(dbDocData => {
       console.log(dbDocData)
       const doctors = dbDocData.map(doctor => doctor.get({plain: true}));
-      res.render('doc-homepage', { doctors })
+      res.render('doc-profile', { doctors })
   })
   .catch(err => {
       console.log(err);
@@ -38,17 +67,8 @@ router.get('/', (req, res) => {
   
 });
 
-//General login route
-router.get('/login', (req, res) => {
-  // if(req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
-    res.render('login');
-});
-
-//Nurse homepage route
-router.get('/nurse-home', (req, res) => {
+//Nurse Profile route
+router.get('/nurse-profile', (req, res) => {
   Nurse.findAll({
     attributes: [
         'id',
@@ -74,13 +94,14 @@ router.get('/nurse-home', (req, res) => {
 .then(dbNurData => {
     console.log(dbNurData)
     const nurses = dbNurData.map(nurse => nurse.get({plain: true}));
-    res.render('nursehome', { nurses })
+    res.render('nurse-profile', { nurses })
 })
 .catch(err => {
     console.log(err);
     res.status(500).json(err)
 })
 })
+
 
 
 module.exports = router;
