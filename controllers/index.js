@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const apiRoutes = require('./api');
+const homeRoutes = require('./home-routes.js')
 
 router.use('/api', apiRoutes);
-
+router.use('/', homeRoutes);
 router.use((req, res) => {
-  res.send("<body style='background-color:yellow'><h1 style='text-align:center' >Wrong Route!</h1></body>")
+  res.status(404).end();
 });
 
 module.exports = router;

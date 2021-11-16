@@ -1,0 +1,13 @@
+<ol class="post-list">
+  {{#each doctors as |doctor|}}
+  <li>
+    <article class="post">
+      <div class="title">
+        <p>Welcome Doctor!</p>
+        <p>Doctor's name: {{doctor.doc_name}}</p>
+        <p>List of patiences: </p>
+      </div>
+    </article>
+  </li>
+  {{/each}}
+</ol>
