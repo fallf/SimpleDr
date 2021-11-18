@@ -73,7 +73,8 @@ router.post('/', (req, res) => {
         last_name: req.body.last_name,
         username: req.body.username,
         email: req.body.email,
-        password:req.body.password
+        password:req.body.password,
+        role_id:req.body.role_id
     })
     
 .then(dbData => {
@@ -85,7 +86,9 @@ router.post('/', (req, res) => {
         
         res.json(dbData)
     });
+    
 })
+
 });
 
 //Verify doctor /api/doctor/login
@@ -117,6 +120,7 @@ router.post('/login', (req, res) => {
 
         res.json({user: dbData, message: 'You are now logged in doctor!'});
     });
+
 
   });
 });
