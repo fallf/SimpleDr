@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Patient } = require('../models');
+const { User, Patient, Role } = require('../models');
 
 
 //Homepage route
@@ -29,6 +29,13 @@ router.get('/profile', (req, res) => {
           'email',
           'role_id'
       ],
+
+      include:[
+        {
+          model:Role,
+          attributes:['id', 'name']
+        }
+      ]
     //   include: [
     //       {
     //           model: Patient,

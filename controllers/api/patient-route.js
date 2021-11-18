@@ -9,9 +9,10 @@ router.get('/', (req, res)=>{
             'p_name',
             'p_lname',
             'p_email',
-            'p_user',
+            'p_dob',
             'p_condition',
-            'p_user_comment'
+            'p_doc_comment',
+            'user_id'
             
         ],
         include:[
@@ -41,9 +42,9 @@ router.get('/:id', (req,res)=>{
         'p_name',
         'p_lname',
         'p_email',
-        'p_user',
+        'p_dob',
         'p_condition',
-        'p_user_comment',
+        'p_doc_comment',
         'user_id'
       ],
       include:[
@@ -69,20 +70,20 @@ router.get('/:id', (req,res)=>{
 })
 
 router.post('/',(req,res)=>{
-     Patient.create({
-         p_name:req.body.p_name,
-         p_lname:req.body.p_lname,
-         p_email:req.body.p_email,
-         p_user:req.body.p_user,
-         p_condition:req.body.p_condition,
-         p_user_comment:req.body.p_user_comment,
-         user_id:req.body.user_id
-     })
-     .then(dbData => res.json(dbData))
-     .catch(err =>{
-         console.log(err);
-         res.status(500).json(err);
-     })
+    Patient.create({
+        p_name:req.body.p_name,
+        p_lname:req.body.p_lname,
+        p_email:req.body.p_email,
+        p_dob:req.body.p_dob,
+        p_condition:req.body.p_condition,
+        p_doc_comment:req.body.p_doc_comment
+        
+    })
+    .then(dbData => res.json(dbData))
+    .catch(err =>{
+        console.log(err);
+        res.status(500).json(err);
+    })
 })
 
 router.put('/:id', (req,res)=>{
@@ -91,9 +92,9 @@ router.put('/:id', (req,res)=>{
         p_name:req.body.p_name,
         p_lname:req.body.p_lname,
         p_email:req.body.p_email,
-        p_user:req.body.p_user,
+        p_dob:req.body.p_dob,
         p_condition:req.body.p_condition,
-        p_user_comment:req.body.p_user_comment,
+        p_doc_comment:req.body.p_doc_comment,
         user_id:req.body.user_id 
        },
        {

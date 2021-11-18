@@ -1,5 +1,6 @@
-const Role = require('./Role');
 const User = require('./User');
+const Role = require('./Role');
+
 const Patient =require('./Patient');
 
 // const Patient = require('./Patient');
@@ -23,15 +24,20 @@ User.belongsTo(Role,{
     onDelete: 'SET NULL' 
 })
 
-// User.hasMany(Patient, {
-//     foreignKey:'user_id',
-//     onDelete:'SET NULL'
-// });
+User.hasMany(Patient, {
+    foreignKey:'user_id',
+   
+});
+
+Patient.belongsTo(User,{
+    foreignKey:'user_id', 
+    onDelete:'SET NULL'
+});
 
 // Patient.belongsTo(User);
 
 module.exports = {
-    Role,
     User,
+    Role,
     Patient
 };

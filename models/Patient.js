@@ -26,7 +26,7 @@ Patient.init(
             unique:true
 
         },
-        p_user:{
+        p_dob:{
             type: DataTypes.STRING,
             allowNull: false
            
@@ -35,9 +35,13 @@ Patient.init(
             type:DataTypes.STRING,
             allowNull:false
         },
-        p_user_comment:{
+        p_doc_comment:{
             type:DataTypes.STRING,
             allowNull:true
+        },
+        user_id:{
+            type:DataTypes.INTEGER,
+            allowNull:false
         }
     },
     {   
