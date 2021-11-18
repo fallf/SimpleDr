@@ -9,7 +9,8 @@ const patientData = [
         p_email:'j.stwart@me.com',
         p_dob:'1985-09-14',
         p_condition:'headache',
-        p_doc_comment:'drink 8oz of water every hour, take a tylenol before bed'
+        p_doc_comment:'drink 8oz of water every hour, take a tylenol before bed',
+        user_id:1
     }
 ];
 

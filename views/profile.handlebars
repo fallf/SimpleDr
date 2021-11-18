@@ -1,13 +1,48 @@
 <nav>
   <button id="logout" class="btn-no-style">logout</button>
 </nav>
-hello
+Welcome
 
 <ol class="post-list">
   {{#if loggedIn}}
-  <li>tests {{user.name}}</li>
+  <li> {{user.role.name}}: {{user.name}} {{user.last_name}}</li>
   {{/if}}
 </ol>
+
+{{!-- patient app handled by role under nurse --}}
+ <section>
+        <form class="card">
+          <div class="app-title">
+            <h1>Patient Application form</h1>
+          </div>
+          <div class="app-form">
+           <div class="text-box">
+             <label for="name">Name</label>
+             <input id="p-name"  type="text">
+           </div>
+           <div class="text-box">
+            <label for="name">Last name</label>
+            <input id="p-lname" type="text">
+          </div>
+          <div class="text-box">
+            <label for="name">Email</label>
+            <input id="p-email" type="email">
+          </div>
+          <div class="text-box">
+            <label for="name">Date of Birth</label>
+            <input id="p-dob" type="text">
+          </div>
+          <div class="text-box">
+            <label for="name">Symtoms</label>
+            <input id="p-sym" type="text">
+          </div>
+
+          </div>
+          <div class="submit-btn">
+              <button id="btn">Submit</button>
+          </div>
+        </form>
+      </section> 
 
  <script src="/javascript/logout.js"></script>
  <script src="/javascript/profile.js"></script>
