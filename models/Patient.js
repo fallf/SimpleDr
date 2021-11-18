@@ -26,7 +26,7 @@ Patient.init(
             unique:true
 
         },
-        p_dob:{
+        p_user:{
             type: DataTypes.STRING,
             allowNull: false
            
@@ -35,7 +35,7 @@ Patient.init(
             type:DataTypes.STRING,
             allowNull:false
         },
-        p_doc_comment:{
+        p_user_comment:{
             type:DataTypes.STRING,
             allowNull:true
         }
@@ -50,5 +50,6 @@ Patient.init(
         modelName:'patient'
     }
 )
+
 module.exports = Patient;
 

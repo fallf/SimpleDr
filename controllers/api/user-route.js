@@ -21,10 +21,6 @@ router.get('/', (req, res)=>{
                 attributes:['name']
             }
         ]
-
-
-        
-    
     }).then(dbData => res.json(dbData))
     .catch(err =>{
         console.log(err);
@@ -32,7 +28,7 @@ router.get('/', (req, res)=>{
     })
 });
 
-//GET /api/doctor/1
+//GET /api/user/1
 router.get('/:id', (req,res)=>{
   
     User.findOne({
@@ -48,7 +44,7 @@ router.get('/:id', (req,res)=>{
             id:req.params.id
         },
         include:{
-            model:'role',
+            model: Role,
             attributes:['id','name']
             
         }
@@ -66,7 +62,7 @@ router.get('/:id', (req,res)=>{
 
 });
 
-//POST /api/doctor
+//POST /api/user
 router.post('/', (req, res) => {
     User.create({
         name: req.body.name,
@@ -91,9 +87,9 @@ router.post('/', (req, res) => {
 
 });
 
-//Verify doctor /api/doctor/login
+//Verify user /api/user/login
 router.post('/login', (req, res) => {
-    // expects {doc_email: 'line@email.com, doc_password: 'password123"}
+    // expects {user_email: 'line@email.com, user_password: 'password123"}
     User.findOne({
         where: {
             email: req.body.email
@@ -114,18 +110,18 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
         // declare session variables
-        req.session.id = dbData.id;
-        req.session.doc_username = dbData.username;
+        req.session.user_id = dbData.id;
+        req.session.username = dbData.username;
         req.session.loggedIn = true;
 
-        res.json({user: dbData, message: 'You are now logged in doctor!'});
+        res.json({user: dbData, message: 'You are now logged in!'});
     });
 
 
   });
 });
 
-//PUT /api/doctor/1
+//PUT /api/users/1
 router.put('/:id', (req, res)=>{
     User.update(req.body,{
         individualHooks:true,

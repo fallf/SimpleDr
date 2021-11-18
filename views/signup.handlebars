@@ -1,11 +1,11 @@
 
-<form class="doc-signup-form">
+<form class="user-signup-form">
   <div>
-    <label for="name-signup">Doc First Name:</label>
+    <label for="name-signup">First Name:</label>
     <input type="text" id="name-signup" />
   </div>
   <div>
-    <label for="lname-signup">Doc Last Name:</label>
+    <label for="lname-signup">Last Name:</label>
     <input type="text" id="lname-signup" />
   </div>
   <div>
@@ -20,9 +20,18 @@
     <label for="password-signup">password:</label>
     <input type="password" id="password-signup" />
   </div>
+  <p>
+    What is your role?
+    <div>
+      <input type="radio" id="doc-role-signup"/>
+      <label for="doc-role-signup">Doctor</label>
+      <input type="radio" id="nur-role-signup"/>
+      <label for="nur-role-signup">Nurse</label>
+    </div>
+  </p>
   <div>
-    <button type="submit">signup</button>
+    <button type="submit" id="user-signup-form">signup</button>
   </div>
 </form>
 
-<script src="/javascript/doc-sign-up.js"></script>
+<script src="/javascript/user-sign-up.js"></script>

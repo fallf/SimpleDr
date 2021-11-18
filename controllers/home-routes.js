@@ -4,27 +4,29 @@ const { User, Patient } = require('../models');
 
 
 //Homepage route
-router.get('/home', (req, res) => {
-  res.render('homepage')
+router.get('/login', (req, res) => {
+  res.render('login')
 })
 
-//Login route
-router.get('/login', (req, res) => {
-  // if(req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
-    res.render('login');
-});
+// //Login route
+// router.get('/login', (req, res) => {
+//   // if(req.session.loggedIn) {
+//   //   res.redirect('/');
+//   //   return;
+//   // }
+//     res.render('login');
+// });
 
 // Sign-up route
 router.get('/signup', (req, res) => {
   res.render('signup')
 })
+
 let user = 
-//Doctor Profile route
+//User Profile route
 router.get('/profile', (req, res) => {
-  User.findByPk(req.session.user_id, {
+  console.log(req.session.user_id)
+  User.findByPk(req.session.id, {
       attributes: [
           'id',
           'name',
@@ -49,8 +51,8 @@ router.get('/profile', (req, res) => {
   })
   .then(dbData => {
       console.log(dbData)
-      const users = dbData.map(doctor => doctor.get({plain: true}));
-      res.render('profile', { doctors })
+      // const users = dbData.map(user => user.get({plain: true}));
+      res.render('profile', dbData)
   })
   .catch(err => {
       console.log(err);
@@ -58,41 +60,6 @@ router.get('/profile', (req, res) => {
   })
   
 });
-
-//Nurse Profile route
-router.get('/nurse-profile', (req, res) => {
-  Nurse.findAll({
-    attributes: [
-        'id',
-        'nur_name',
-        'nur_last_name',
-        'nur_username',
-        'nur_email',
-    ],
-  //   include: [
-  //       {
-  //           model: Patient,
-  //           attributes: [
-  //               'id',
-  //               'p_name',
-  //               'p_lname',
-  //               'p_dob',
-  //               'p_condition',
-  //               'p_doc_comment'
-  //           ]
-  //       }
-  //   ]
-})
-.then(dbNurData => {
-    console.log(dbNurData)
-    const nurses = dbNurData.map(nurse => nurse.get({plain: true}));
-    res.render('nurse-profile', { nurses })
-})
-.catch(err => {
-    console.log(err);
-    res.status(500).json(err)
-})
-})
 
 
 

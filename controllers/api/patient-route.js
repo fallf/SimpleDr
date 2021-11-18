@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Patient, Doctor} = require('../../models');
+const { Patient, User} = require('../../models');
 
 router.get('/', (req, res)=>{
 
@@ -9,16 +9,16 @@ router.get('/', (req, res)=>{
             'p_name',
             'p_lname',
             'p_email',
-            'p_dob',
+            'p_user',
             'p_condition',
-            'p_doc_comment'
+            'p_user_comment'
             
         ],
         include:[
             {
-               model:Doctor,
+               model:User,
                attributes:[
-                'id', 'doc_name','doc_last_name'  
+                'id', 'name','last_name'  
                ] 
             }
         ]
@@ -41,16 +41,16 @@ router.get('/:id', (req,res)=>{
         'p_name',
         'p_lname',
         'p_email',
-        'p_dob',
+        'p_user',
         'p_condition',
-        'p_doc_comment',
-        'doctor_id'
+        'p_user_comment',
+        'user_id'
       ],
       include:[
         {
-           model:Doctor,
+           model:User,
            attributes:[
-            'id', 'doc_name','doc_last_name'  
+            'id', 'name','last_name'  
            ] 
         }
     ]
@@ -73,10 +73,10 @@ router.post('/',(req,res)=>{
          p_name:req.body.p_name,
          p_lname:req.body.p_lname,
          p_email:req.body.p_email,
-         p_dob:req.body.p_dob,
+         p_user:req.body.p_user,
          p_condition:req.body.p_condition,
-         p_doc_comment:req.body.p_doc_comment,
-         doctor_id:req.body.doctor_id
+         p_user_comment:req.body.p_user_comment,
+         user_id:req.body.user_id
      })
      .then(dbData => res.json(dbData))
      .catch(err =>{
@@ -91,10 +91,10 @@ router.put('/:id', (req,res)=>{
         p_name:req.body.p_name,
         p_lname:req.body.p_lname,
         p_email:req.body.p_email,
-        p_dob:req.body.p_dob,
+        p_user:req.body.p_user,
         p_condition:req.body.p_condition,
-        p_doc_comment:req.body.p_doc_comment,
-        doctor_id:req.body.doctor_id 
+        p_user_comment:req.body.p_user_comment,
+        user_id:req.body.user_id 
        },
        {
            where:{

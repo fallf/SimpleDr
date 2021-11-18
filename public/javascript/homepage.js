@@ -1,6 +1,4 @@
-function docSignupRoute() {
-    document.location.replace("/doc-signup")
-};
+
 
 function docSigninRoute() {
     document.location.replace("/doc-login")
@@ -18,5 +16,5 @@ function nurSigninRoute() {
 
 document.querySelector('#doctor-signin').addEventListener('click', docSigninRoute);
 document.querySelector('#nurse-signin').addEventListener('click', nurSigninRoute);
-document.querySelector('#doctor-signup').addEventListener('click', docSignupRoute);
+
 document.querySelector('#nurse-signup').addEventListener('click', nurSignupRoute);

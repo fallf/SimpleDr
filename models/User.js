@@ -56,14 +56,14 @@ User.init(
     {
        hooks:{
            //encrypt password beforeCreate
-           async beforeCreate(newDocData){
-               newDocData.password = await bcrypt.hash(newDocData.password,10);
-               return newDocData;
+           async beforeCreate(newUserData){
+               newUserData.password = await bcrypt.hash(newUserData.password,10);
+               return newUserData;
            },
            //encrypt password before Update
-           async beforeUpdate(updatedDoc){
-               updatedDoc.password = await bcrypt.hash(updatedDoc.password, 10);
-               return updatedDoc;
+           async beforeUpdate(updatedUser){
+               updatedUser.password = await bcrypt.hash(updatedUser.password, 10);
+               return updatedUser;
 
            }
        },
