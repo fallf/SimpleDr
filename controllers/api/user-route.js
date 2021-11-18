@@ -80,9 +80,10 @@ router.post('/', (req, res) => {
         req.session.username = dbData.username;
         req.session.loggedIn = true;
         
-        res.json(dbData)
+        
     });
-    
+    console.log(req.session.user_id)
+    res.json(dbData)
 })
 
 });

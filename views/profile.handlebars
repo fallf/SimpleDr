@@ -2,11 +2,13 @@
   <button id="logout" class="btn-no-style">logout</button>
 </nav>
 hello
+
 <ol class="post-list">
   {{#if loggedIn}}
-  <li>tests {{user.doc_name}}</li>
+  <li>tests {{user.name}}</li>
   {{/if}}
 </ol>
 
  <script src="/javascript/logout.js"></script>
+ <script src="/javascript/profile.js"></script>
 

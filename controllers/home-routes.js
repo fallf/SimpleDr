@@ -5,17 +5,12 @@ const { User, Patient } = require('../models');
 
 //Homepage route
 router.get('/login', (req, res) => {
+  // if(req.session.loggedIn) {
+  //   res.redirect('/login');
+  //   return;
+  // }
   res.render('login')
 })
-
-// //Login route
-// router.get('/login', (req, res) => {
-//   // if(req.session.loggedIn) {
-//   //   res.redirect('/');
-//   //   return;
-//   // }
-//     res.render('login');
-// });
 
 // Sign-up route
 router.get('/signup', (req, res) => {
@@ -26,7 +21,7 @@ let user =
 //User Profile route
 router.get('/profile', (req, res) => {
   console.log(req.session.user_id)
-  User.findByPk(req.session.id, {
+  User.findByPk(req.session.user_id, {
       attributes: [
           'id',
           'name',
@@ -51,8 +46,10 @@ router.get('/profile', (req, res) => {
   })
   .then(dbData => {
       console.log(dbData)
-      // const users = dbData.map(user => user.get({plain: true}));
-      res.render('profile', dbData)
+      const user = dbData.get({plain: true});
+      console.log(user)
+      res.render('profile', {user,
+      loggedIn: req.session.loggedIn})
   })
   .catch(err => {
       console.log(err);
