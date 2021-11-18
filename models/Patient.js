@@ -39,8 +39,6 @@ Patient.init(
             type:DataTypes.STRING,
             allowNull:true
         }
-       
-
     },
     {   
         sequelize,

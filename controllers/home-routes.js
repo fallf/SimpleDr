@@ -44,11 +44,13 @@ router.get('/profile', (req, res) => {
     //   ]
   })
   .then(dbData => {
-      console.log(dbData)
+      // console.log(dbData)
       const user = dbData.get({plain: true});
-      console.log(user)
+      console.log(user.role_id)
+      console.log(req.session)
       res.render('profile', {user,
-      loggedIn: req.session.loggedIn})
+      loggedIn: req.session.loggedIn,
+      })
   })
   .catch(err => {
       console.log(err);

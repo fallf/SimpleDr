@@ -5,6 +5,7 @@ hello
 
 <ol class="post-list">
   {{#if loggedIn}}
+   {{#if role_id === 1}}
   <li>tests {{user.name}}</li>
   {{/if}}
 </ol>
