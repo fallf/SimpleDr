@@ -17,7 +17,6 @@ router.get('/signup', (req, res) => {
   res.render('signup')
 })
 
-let user = 
 //User Profile route
 router.get('/profile', (req, res) => {
   console.log(req.session.user_id)
