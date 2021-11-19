@@ -34,6 +34,8 @@ Patient.belongsTo(User,{
     onDelete:'SET NULL'
 });
 
+
+
 // Patient.belongsTo(User);
 
 module.exports = {

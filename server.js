@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const nodemailer = require('nodemailer');
 
 const sess = {
     secret: 'Super secret secret',
@@ -22,6 +23,14 @@ const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+// //register new function
+// hbs.handlebars.registerHelper( "when", function(op1, op2) {
+//     var operators = {
+//         'eq': function (l,r) {return l == r;}
+//     },
+//     result = operators[]
+// }) 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:false }));

@@ -29,35 +29,44 @@ router.get('/profile', (req, res) => {
           'email',
           'role_id'
       ],
-
       include:[
         {
           model:Role,
           attributes:['id', 'name']
         }
       ]
-    //   include: [
-    //       {
-    //           model: Patient,
-    //           attributes: [
-    //               'id',
-    //               'p_name',
-    //               'p_lname',
-    //               'p_dob',
-    //               'p_condition',
-    //               'p_doc_comment'
-    //           ]
-    //       }
-    //   ]
   })
-  .then(dbData => {
+  .then(userData => {
       // console.log(dbData)
-      const user = dbData.get({plain: true});
-      console.log(user.role_id)
-      console.log(req.session)
-      res.render('profile', {user,
-      loggedIn: req.session.loggedIn,
-      })
+      User.findAll({
+        attributes: [
+          'id',
+          'name',
+          'last_name',
+          'role_id'
+        ],
+        where: {
+          role_id: 1
+        },
+        include: [
+          {
+            model: Role,
+            attributes: ['name']
+          }
+        ] 
+      }).then (docData => {
+        console.log(docData)
+        const user = userData.get({plain: true});
+        const doctors = docData.map(user => user.get({plain: true}));
+        // console.log(user.role_id)
+        // console.log(req.session)
+        res.render('profile', {
+          user, 
+          doctors,
+          loggedIn: req.session.loggedIn,
+        })
+      });
+      
   })
   .catch(err => {
       console.log(err);
@@ -66,6 +75,9 @@ router.get('/profile', (req, res) => {
   
 });
 
+//Doctor email route
+router.post('/send', (req, res) => {
+})
 
 
 module.exports = router;

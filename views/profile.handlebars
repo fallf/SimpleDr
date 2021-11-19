@@ -1,49 +1,137 @@
 <nav>
   <button id="logout" class="btn-no-style">logout</button>
 </nav>
-Welcome
-
+{{!--Welcome--}}
+<h2>Welcome</h2>
 <ol class="post-list">
   {{#if loggedIn}}
   <li> {{user.role.name}}: {{user.name}} {{user.last_name}}</li>
   {{/if}}
 </ol>
 
-{{!-- patient app handled by role under nurse --}}
+{{!-- patient app handled by role under Nurse --}}
+<h2>Sign Up Patient</h2>
  <section>
-        <form class="card">
-          <div class="app-title">
-            <h1>Patient Application form</h1>
-          </div>
-          <div class="app-form">
-           <div class="text-box">
-             <label for="name">Name</label>
-             <input id="p-name"  type="text">
-           </div>
-           <div class="text-box">
-            <label for="name">Last name</label>
-            <input id="p-lname" type="text">
-          </div>
-          <div class="text-box">
-            <label for="name">Email</label>
-            <input id="p-email" type="email">
-          </div>
-          <div class="text-box">
-            <label for="name">Date of Birth</label>
-            <input id="p-dob" type="text">
-          </div>
-          <div class="text-box">
-            <label for="name">Symtoms</label>
-            <input id="p-sym" type="text">
-          </div>
+    <form class="card">
+      <div class="app-title">
+        <h1>Patient Application form</h1>
+      </div>
+      <div class="app-form">
+       <div class="text-box">
+          <label for="p-name">Name</label>
+          <input id="p-name"  type="text">
+       </div>
+      <div class="text-box">
+          <label for="p-lname">Last name</label>
+          <input id="p-lname" type="text">
+      </div>
+      <div class="text-box">
+        <label for="p-email">Email</label>
+        <input id="p-email" type="email">
+      </div>
+      <div class="text-box">
+        <label for="p-dob">Date of Birth</label>
+        <input id="p-dob" type="text">
+      </div>
+      <div class="text-box">
+        <label for="p-sym">Symtoms</label>
+        <input id="p-sym" type="text">
+      </div>
+      <div class="text-box">
+        <label for="as-doc-id">Doctor's ID</label>
+        <input id="as-doc-id" type="text">
+      </div>
 
-          </div>
-          <div class="submit-btn">
-              <button id="btn">Submit</button>
-          </div>
-        </form>
-      </section> 
+    </div>
+      <div class="submit-btn">
+        <button id="btn">Submit</button>
+      </div>
+  </form>
+</section> 
+
+
+<h2>Doctor List:</h2>
+<ol class="doc-list">
+  {{#each doctors as |doctor|}}
+  <li> 
+    <article class="doc">
+      <div class="meta">
+        {{doctor.last_name}}, {{doctor.name}} ID: {{doctor.id}}
+      </div>
+    </article>
+  </li>
+  {{/each}}
+</ol>
+
+<h2>Doctor's comment</h2>
+{{!-- <section>
+  <form>
+    <div class="text-box">
+      <label for="doc-comment">Comment</label>
+      <input id="doc-comment" type="text">
+    </div>
+    <div>
+      <button id="up-date-btn">Update</button>
+    </div>
+  </form>
+</section> --}}
+
+<h2>Send Email to patient</h2>
+<div class="contact">
+  <form id="email-form" method="POST" action="send">
+    <p>
+      <label>Name</label>
+      <input type="text" name="name">
+    </p>
+    <p class="full">
+      <label>Message</label>
+      <textarea name="message" rows="5"></textarea>
+    </p>
+    <p class="full">
+      <button type="submit">Submit</button>
+    </p>
+  </form>
+</div>
+
+{{!-- script for nodemailer --}}
+<script>
+  let transporter = nodemailer.createTransport({
+      host: 'smtp.mail.yahoo.com',
+      port: 587,
+      secure: false,
+      auth: {
+          user: 'simpledoctesting@yahoo.com',
+          pass: 'bunooyytiaucgufb',
+      },
+      tls:{
+          rejectUnauthorized: false
+      }
+  });
+
+  //send mail with defined transport object
+  let mailOptions = {
+      from: '"SimpleDoc"<simpledoctesting@yahoo.com>', // sender address
+      to: 'marvin.ren@yale.edu, marvin.ren@yahoo.com', //list of receivers 
+      subject: "Doctor's comments",
+      text: 'Please reaad carefully',
+      html: output, // html body
+  };
+
+  transporter.sendMail(mailOptions, (error, info)=> {
+      if (error) {
+          return console.log(error);
+      }
+      console.log("Message sent: %s", info.messageId);
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+      res.render('contact', {layout: false, msg:'Email has been sent'});
+  });
+
+</script>
+
+
 
  <script src="/javascript/logout.js"></script>
  <script src="/javascript/profile.js"></script>
+
 

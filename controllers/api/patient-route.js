@@ -76,8 +76,8 @@ router.post('/',(req,res)=>{
         p_email:req.body.p_email,
         p_dob:req.body.p_dob,
         p_condition:req.body.p_condition,
-        p_doc_comment:req.body.p_doc_comment
-        
+        p_doc_comment:req.body.p_doc_comment,
+        user_id:req.body.user_id
     })
     .then(dbData => res.json(dbData))
     .catch(err =>{
