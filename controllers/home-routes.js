@@ -18,27 +18,26 @@ router.get('/signup', (req, res) => {
 })
 
 //User Profile route
-router.get('/profile', (req, res) => {
+router.get('/profile', async (req, res) => {
   console.log(req.session.user_id)
-  User.findByPk(req.session.user_id, {
-      attributes: [
-          'id',
-          'name',
-          'last_name',
-          'username',
-          'email',
-          'role_id'
-      ],
-      include:[
-        {
-          model:Role,
-          attributes:['id', 'name']
-        }
-      ]
+  const singleUserData = await User.findByPk(req.session.user_id, {
+    attributes: [
+      'id',
+      'name',
+      'last_name',
+      'username',
+      'email',
+      'role_id'
+    ],
+    include:[
+      {
+        model:Role,
+        attributes:['id', 'name']
+      }
+    ]
   })
-  .then(userData => {
-      // console.log(dbData)
-      User.findAll({
+
+    const multiUserData = await User.findAll({
         attributes: [
           'id',
           'name',
@@ -54,29 +53,38 @@ router.get('/profile', (req, res) => {
             attributes: ['name']
           }
         ] 
-      }).then (docData => {
-        console.log(docData)
-        const user = userData.get({plain: true});
-        const doctors = docData.map(user => user.get({plain: true}));
+    })
+
+    const patientsData = await Patient.findAll({
+      attribute: [
+        'id',
+        'p_name',
+        'p_lname',
+        'p_email',
+        'p_dob',
+        'p_condition',
+        'p_doc_comment',
+      ],
+      where: {
+        p_doc_comment: null
+      }
+    })
+        const user = singleUserData.get({plain: true});
+        const doctors = multiUserData.map(user => user.get({plain: true}));
+        const patients = patientsData.map(pat => pat.get({plain: true}));
         // console.log(user.role_id)
         // console.log(req.session)
         res.render('profile', {
           user, 
           doctors,
+          patients,
           loggedIn: req.session.loggedIn,
-        })
-      });
-      
-  })
-  .catch(err => {
-      console.log(err);
-      res.status(500).json(err)
-  })
-  
+        })    
 });
 
 //Doctor email route
 router.post('/send', (req, res) => {
+  
 })
 
 

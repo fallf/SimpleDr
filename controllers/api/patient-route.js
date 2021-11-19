@@ -1,5 +1,22 @@
 const router = require('express').Router();
 const { Patient, User} = require('../../models');
+const nodemailer = require('nodemailer');
+
+//create transporter 
+let transporter = nodemailer.createTransport({
+    host: 'smtp.mail.yahoo.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: 'simpledoctesting@yahoo.com',
+        pass: 'bunooyytiaucgufb',
+    },
+    tls:{
+        rejectUnauthorized: false
+    }
+});
+
+
 
 router.get('/', (req, res)=>{
 
@@ -70,6 +87,7 @@ router.get('/:id', (req,res)=>{
 })
 
 router.post('/',(req,res)=>{
+    console.log(req.body)
     Patient.create({
         p_name:req.body.p_name,
         p_lname:req.body.p_lname,
@@ -110,6 +128,25 @@ router.put('/:id', (req,res)=>{
            res.status(404).json({ message:'No Patient found!'});
            return;
        }
+       console.log(dbData.get({plain: true}))
+        //send mail with defined transport object
+        let mailOptions = {
+        from: '"SimpleDOc"<simpledoctesting@yahoo.com>', // sender address
+        to: 'marvin.ren@yale.edu', //list of receivers 
+        subject: 'Hello',
+        text: 'Hello, thanks for the email!',
+        html: output, // html body
+        };
+       transporter.sendMail(mailOptions, (error, info)=> {
+        if (error) {
+            return console.log(error);
+        }
+        console.log("Message sent: %s", info.messageId);
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+        res.render('contact', {layout: false, msg:'Email has been sent'});
+       });
+
        res.json(dbData);
    })
    .catch(err =>{

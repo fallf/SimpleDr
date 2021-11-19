@@ -12,7 +12,7 @@ async function patientAppHandler(event){
 
 
     if (p_name && p_lname && p_email && p_dob && p_condition && user_id){
-       const response = await fetch('/api/patient',{
+       const response = await fetch('/api/patient/',{
            method:'POST',
            body:JSON.stringify({
             p_name,
@@ -20,7 +20,6 @@ async function patientAppHandler(event){
             p_email,
             p_dob,
             p_condition,
-            p_doc_comment,
             user_id
            }),
            headers:{'Content':'application/json'}
@@ -61,5 +60,5 @@ async function patientCommnetHandler(event) {
 
 
 
-document.querySelector('#btn').addEventListener('submit', patientAppHandler);
-// document.querySelector('#up-date-btn').addEventListener('submit', patientCommnetHandler);
+document.querySelector('#btn').addEventListener('click', patientAppHandler);
+document.querySelector('#up-date-btn').addEventListener('submit', patientCommnetHandler);
