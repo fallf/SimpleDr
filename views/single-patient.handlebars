@@ -19,7 +19,10 @@
   <li> 
     <article class="doc">
       <div class="meta">
-        {{singlePatient.p_lname}}, {{singlePatient.p_name}} | email: {{singlePatient.p_email}}
+        {{singlePatient.p_lname}}, {{singlePatient.p_name}} 
+      </div>
+      <div id='pat-email'>
+        {{singlePatient.p_email}}   
       </div>
 
       {{!-- send patient email --}}
