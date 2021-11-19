@@ -116,19 +116,18 @@ router.put('/:id', async (req,res)=>{
         to: `${req.body.p_email}`, //list of receivers 
         subject: 'Hello',
         text: 'Hello, thanks for the email!',
-        html: output, // html body
+        html: req.body.p_doc_comment, // html body
         };
+
 
         transporter.sendMail(mailOptions, (error, info)=> {
             if (error) {
                 return console.log(error);
             }
-            // console.log("Message sent: %s", info.messageId);
-            // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            console.log("Message sent: %s", info.messageId);
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
           
         });
-
-   res.render('contact', {layout: false, msg:'Email has been sent'});
    res.json(dbPatData);
 })
 
