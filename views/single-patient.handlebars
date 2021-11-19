@@ -1,0 +1,39 @@
+<nav>
+  <button id="logout" class="btn-no-style">logout</button>
+</nav>
+
+{{!--Welcome--}}
+<h2>Welcome</h2>
+<ol class="post-list">
+  {{#if loggedIn}}
+  <li> {{singleUser.role.name}}: {{singleUser.name}} {{singleUser.last_name}}</li>
+  {{/if}}
+</ol>
+
+
+
+{{!-- pateint list --}}
+<h2>Patient</h2>
+<ol class="doc-list">
+  
+  <li> 
+    <article class="doc">
+      <div class="meta">
+        {{singlePatient.p_lname}}, {{singlePatient.p_name}} | email: {{singlePatient.p_email}}
+      </div>
+      {{!-- send patient email --}}
+      <h2>Send Email to patient</h2>
+      <div class="contact">
+        <form id="email-form">
+        <p class="full">
+            <label>Message: </label>
+            <textarea name="message" rows="5" id="doc-comment"></textarea>
+        </p>
+        <p class="full">
+            <button id="update-btn">Submit</button>
+        </p>
+        </form>
+      </div>  
+    </article>
+  </li>
+</ol>

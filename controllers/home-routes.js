@@ -82,10 +82,56 @@ router.get('/profile', async (req, res) => {
         })    
 });
 
-//Doctor email route
-router.post('/send', (req, res) => {
+//patient/1 route 
+router.get('/patient/:id', async (req, res) => {
+  const singleUserData = await User.findByPk(req.session.user_id, {
+    attributes: [
+      'id',
+      'name',
+      'last_name',
+      'username',
+      'email',
+      'role_id'
+    ],
+    include:[
+      {
+        model:Role,
+        attributes:['id', 'name']
+      }
+    ]
+  });
+
+  const singlePatientData = await Patient.findOne({
+    attributes: [
+      'id',
+      'p_name',
+      'p_lname',
+      'p_email',
+      'p_dob',
+      'p_condition',
+      'p_doc_comment',
+    ],
+    where: {
+      id: req.params.id
+    },
+  })
+    
+    //serialize the data
+    const singlePatient = singlePatientData.get({plain: true});
+    const singleUser = singleUserData.get({plain: true});
+    //pass data to template
+    res.render('single-patient', {
+      singleUser,
+      singlePatient,
+      loggedIn: req.session.loggedIn
+    });
   
-})
+});
+
+//Doctor email route
+// router.post('/send', (req, res) => {
+  
+// })
 
 
 module.exports = router;
