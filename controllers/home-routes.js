@@ -3,6 +3,9 @@ const sequelize = require('../config/connection');
 const { User, Patient, Role } = require('../models');
 const withAuth = require('../utils/auth');
 
+router.get('/', (req, res)=> {
+  res.render('login')
+})
 //Homepage route
 router.get('/login', (req, res) => {
   // if(req.session.loggedIn) {

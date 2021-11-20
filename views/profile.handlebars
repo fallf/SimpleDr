@@ -1,20 +1,20 @@
-<a href="/user/{{user.id}}">Setting</a>
-<div>
-  <button id="logout" class="btn-no-style">logout</button>
-</div>
+
+
+{{#if loggedIn}}
 
 {{!--Welcome--}}
 
-<h2>Welcome</h2>
+<h2>Welcome {{user.role.name}}:</h2>
 
-{{#if loggedIn}}
-<p> {{user.role.name}}: {{user.name}} {{user.last_name}}</p>
+
+<p class="user-name">  {{user.name}} {{user.last_name}}</p>
 {{#ifCond user.role_id}}
-
-    <h2>Patients list</h2>
+<div class="card-p">
+    <h2>Patients List</h2>
+    <div class="list-p">
 <ol class="doc-list">
   {{#each patients as |patient|}}
-  <li> 
+  <li class="card-p"> 
     <article class="doc">
       <div class="meta">
         <a href="/patient/{{patient.id}}">{{patient.p_lname}}, {{patient.p_name}}</a>
@@ -22,12 +22,15 @@
     </article>
   </li>
   {{/each}}
+  </div>
 </ol>
+</div>
+
 {{else}}
     
     {{!-- patient app handled by role under Nurse --}}
-<h2>Sign Up Patient</h2>
- <section>
+
+ <section class="nurse-app">
     <form class="card">
       <div class="app-title">
         <h1>Patient Application form</h1>
@@ -35,23 +38,23 @@
       <div class="app-form">
        <div class="text-box">
           <label for="p-name">Name</label>
-          <input id="p-name"  type="text">
+          <input placeholder="John" id="p-name"  type="text">
        </div>
       <div class="text-box">
           <label for="p-lname">Last name</label>
-          <input id="p-lname" type="text">
+          <input placeholder="Smith" id="p-lname" type="text">
       </div>
       <div class="text-box">
         <label for="p-email">Email</label>
-        <input id="p-email" type="email">
+        <input placeholder="j.smith@gmailcom" id="p-email" type="email">
       </div>
       <div class="text-box">
         <label for="p-dob">Date of Birth</label>
-        <input id="p-dob" type="text">
+        <input placeholder="01-02-1989" id="p-dob" type="text">
       </div>
       <div class="text-box">
         <label for="p-sym">Symtoms</label>
-        <input id="p-sym" type="text">
+        <input placeholder="Symtoms" id="p-sym" type="text">
       </div>
       <div class="text-box">
         <label for="as-doc-id">Doctor's ID</label>
@@ -64,10 +67,12 @@
 
     </div>
       <div class="submit-btn">
-        <button id="btn">Submit</button>
+        <button class="btn" id="btn">Submit</button>
       </div>
   </form>
 </section> 
+
+<script src="/javascript/profile.js"></script>
 {{/ifCond}}
 
 
@@ -78,7 +83,7 @@
 
 
 <script src="/javascript/logout.js"></script>
-<script src="/javascript/profile.js"></script>
+
 
 
 
