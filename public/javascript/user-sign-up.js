@@ -34,4 +34,4 @@ async function userSignupFormHandler(event) {
     }
   }
 };
-document.querySelector('#user-signup-form').addEventListener('click', userSignupFormHandler);
+document.querySelector('#user-signup-form').addEventListener('submit', userSignupFormHandler);
