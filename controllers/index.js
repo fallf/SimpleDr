@@ -6,7 +6,7 @@ router.use('/api', apiRoutes);
 router.use('/', homeRoutes);
 
 router.use((req, res) => {
-  res.status(404).end();
+  res.send('<img src="https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png">');
 });
 
 module.exports = router;
