@@ -17,14 +17,15 @@
   <li> 
     <article class="doc">
       <div class="meta">
-        {{singlePatient.p_lname}}, {{singlePatient.p_name}} 
+        <p>Name: {{singlePatient.p_lname}}, {{singlePatient.p_name}}</p>
+        <p id='pat-con'>Symptoms: {{singlePatient.p_condition}}</p>
       </div>
       <div id='pat-email'>
         {{singlePatient.p_email}}   
       </div>
 
       {{!-- send patient email --}}
-      <h3>Consultation note</h3>
+      <h3>Consultation note for <span id="pat-name">{{singlePatient.p_name}}</span></h3>
       <div class="contact">
         <form id="email-form">
         <div class="full">

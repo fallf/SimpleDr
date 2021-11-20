@@ -4,15 +4,19 @@ async function patientCommnetHandler() {
         window.location.toString().split('/').length - 1
     ];
     const p_email = document.querySelector('#pat-email').innerText.trim();
-    
+    const p_name = document.querySelector('#pat-name').innerText.trim();
+    const p_condition = document.querySelector('#pat-con').innerText.trim();
     console.log(p_doc_comment)
       console.log(id)
-    if (p_doc_comment && id && p_email) {
+      
+    if (p_doc_comment && id && p_email && p_name && p_condition) {
         const response = await fetch(`/api/patient/${id}`, {
             method: 'PUT',
             body:JSON.stringify({
                 p_doc_comment,
-                p_email
+                p_email,
+                p_name,
+                p_condition
             }),
             headers: {'Content-Type':'application/json'}
         });
