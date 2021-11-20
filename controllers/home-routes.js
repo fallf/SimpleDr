@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Patient, Role } = require('../models');
-
+const withAuth = require('../utils/auth');
 
 //Homepage route
 router.get('/login', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/signup', (req, res) => {
 })
 
 //User Profile route
-router.get('/profile', async (req, res) => {
+router.get('/profile',withAuth, async (req, res) => {
   console.log(req.session.user_id)
   const singleUserData = await User.findByPk(req.session.user_id, {
     attributes: [
@@ -92,7 +92,7 @@ router.get('/profile', async (req, res) => {
 });
 
 //patient/1 route 
-router.get('/patient/:id', async (req, res) => {
+router.get('/patient/:id',withAuth, async (req, res) => {
   const singleUserData = await User.findByPk(req.session.user_id, {
     attributes: [
       'id',
@@ -137,10 +137,37 @@ router.get('/patient/:id', async (req, res) => {
   
 });
 
-//Doctor email route
-// router.post('/send', (req, res) => {
-  
-// })
-
-
+// Setting route
+router.get('/user/:id',withAuth ,(req,res)=>{
+  User.findByPk(req.params.id,{
+    attributes:[
+      'id',
+      'name',
+      'last_name',
+      'username',
+      'email',
+      'password',
+      'role_id'
+    ],
+    include:[
+      {
+        model:Role,
+        attributes:['id','name']
+      }
+    ]
+  }).then(dbdata => {
+    if(dbdata){
+      const user = dbdata.get({ plain:true });
+      res.render('setting',{
+        user,
+        loggedIn: true
+      });
+    } else {
+      res.status(404).end();
+    }
+  })
+  .catch(err =>{
+    res.status(500).json(err);
+  })
+});
 module.exports = router;

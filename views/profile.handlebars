@@ -1,29 +1,30 @@
-<nav>
+<a href="/user/{{user.id}}">Setting</a>
+<div>
   <button id="logout" class="btn-no-style">logout</button>
-</nav>
+</div>
+
 {{!--Welcome--}}
+
 <h2>Welcome</h2>
 
 {{#if loggedIn}}
 <p> {{user.role.name}}: {{user.name}} {{user.last_name}}</p>
 {{#ifCond user.role_id}}
-    {{user.role_id}} is equal 1 Doctor only
+
     <h2>Patients list</h2>
 <ol class="doc-list">
   {{#each patients as |patient|}}
   <li> 
     <article class="doc">
       <div class="meta">
-        {{patient.p_lname}}, {{patient.p_name}} ID: {{patient.p_email}}
-        |
-        <a href="/patient/{{patient.id}}">Select Patient</a>
+        <a href="/patient/{{patient.id}}">{{patient.p_lname}}, {{patient.p_name}}</a>
       </div>
     </article>
   </li>
   {{/each}}
 </ol>
 {{else}}
-    {{user.role_id}} is not equal to 1 Nurse only
+    
     {{!-- patient app handled by role under Nurse --}}
 <h2>Sign Up Patient</h2>
  <section>
@@ -54,7 +55,11 @@
       </div>
       <div class="text-box">
         <label for="as-doc-id">Doctor's ID</label>
-        <input id="as-doc-id" type="text">
+        <select  id="as-doc-id">
+          {{#each doctors as |doctor|}}
+          <option value="{{doctor.id}}">{{doctor.last_name}}, {{doctor.name}}</option>
+          {{/each}}
+        </select>
       </div>
 
     </div>
@@ -63,19 +68,6 @@
       </div>
   </form>
 </section> 
-
-    <h2>Doctor List:</h2>
-    <ol class="doc-list">
-  {{#each doctors as |doctor|}}
-  <li> 
-    <article class="doc">
-      <div class="meta">
-        {{doctor.last_name}}, {{doctor.name}} ID: {{doctor.id}}
-      </div>
-    </article>
-  </li>
-  {{/each}}
-    </ol>
 {{/ifCond}}
 
 
@@ -85,13 +77,13 @@
 
 
 
+<script src="/javascript/logout.js"></script>
+<script src="/javascript/profile.js"></script>
+
+
+
 
 {{/if}}
 
-
-
-
-<script src="/javascript/logout.js"></script>
-<script src="/javascript/profile.js"></script>
 
 

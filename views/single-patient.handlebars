@@ -1,19 +1,17 @@
-<nav>
-  <button id="logout" class="btn-no-style">logout</button>
-</nav>
+
 
 {{!--Welcome--}}
 <h2>Welcome</h2>
 <ol class="post-list">
   {{#if loggedIn}}
   <li> {{singleUser.role.name}}: {{singleUser.name}} {{singleUser.last_name}}</li>
-  {{/if}}
+ 
 </ol>
 
 
 
 {{!-- pateint list --}}
-<h2>Patient</h2>
+<h3>Patient</h3>
 <ol class="doc-list">
   
   <li> 
@@ -26,7 +24,7 @@
       </div>
 
       {{!-- send patient email --}}
-      <h2>Send Email to patient</h2>
+      <h3>Consultation note</h3>
       <div class="contact">
         <form id="email-form">
         <div class="full">
@@ -37,10 +35,13 @@
         <div>
             <button id="update-btn">Submit</button>
         </div>
+        <div>
+          <a href="/profile">Go back</a>
+        </div>
         </form>
       </div>  
     </article>
   </li>
 </ol>
-
+ {{/if}}
 <script src="/javascript/single-patient.js"></script>
