@@ -25,8 +25,8 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 //register new function
-hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
-    if(v1 === v2) {
+hbs.handlebars.registerHelper('ifCond', function(v1, options) {
+    if(v1 === 1) {
         return options.fn(this);
     }
     return options.inverse(this);

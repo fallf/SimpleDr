@@ -3,19 +3,28 @@
 </nav>
 {{!--Welcome--}}
 <h2>Welcome</h2>
-<ol class="post-list">
-  {{#if loggedIn}}
-  <li> {{user.role.name}}: {{user.name}} {{user.last_name}}</li>
-  {{/if}}
+
+{{#if loggedIn}}
+<p> {{user.role.name}}: {{user.name}} {{user.last_name}}</p>
+{{#ifCond user.role_id}}
+    {{user.role_id}} is equal 1 Doctor only
+    <h2>Patients list</h2>
+<ol class="doc-list">
+  {{#each patients as |patient|}}
+  <li> 
+    <article class="doc">
+      <div class="meta">
+        {{patient.p_lname}}, {{patient.p_name}} ID: {{patient.p_email}}
+        |
+        <a href="/patient/{{patient.id}}">Select Patient</a>
+      </div>
+    </article>
+  </li>
+  {{/each}}
 </ol>
-
-{{#ifCond user.role_id 1}}
-    {{user.role_id}} is equal {{1}}
 {{else}}
-    {{user.role_id}} is not equal to {{1}}
-{{/ifCond}}
-
-{{!-- patient app handled by role under Nurse --}}
+    {{user.role_id}} is not equal to 1 Nurse only
+    {{!-- patient app handled by role under Nurse --}}
 <h2>Sign Up Patient</h2>
  <section>
     <form class="card">
@@ -55,9 +64,8 @@
   </form>
 </section> 
 
-
-<h2>Doctor List:</h2>
-<ol class="doc-list">
+    <h2>Doctor List:</h2>
+    <ol class="doc-list">
   {{#each doctors as |doctor|}}
   <li> 
     <article class="doc">
@@ -67,23 +75,18 @@
     </article>
   </li>
   {{/each}}
-</ol>
+    </ol>
+{{/ifCond}}
 
 
-<h2>Patients list</h2>
-<ol class="doc-list">
-  {{#each patients as |patient|}}
-  <li> 
-    <article class="doc">
-      <div class="meta">
-        {{patient.p_lname}}, {{patient.p_name}} ID: {{patient.p_email}}
-        |
-        <a href="/patient/{{patient.id}}">Select Patient</a>
-      </div>
-    </article>
-  </li>
-  {{/each}}
-</ol>
+
+
+
+
+
+
+
+{{/if}}
 
 
 
