@@ -138,7 +138,7 @@ router.put('/:id', async (req,res)=>{
 
         subject: 'Consultation Notes',
         text: 'Consultation Notes',
->
+
         html: output, // html body
         };
 
