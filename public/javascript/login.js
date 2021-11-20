@@ -24,6 +24,8 @@ async function userLoginFormHandler(event) {
 }
 
 function userSignupRoute() {
+
+  
   document.location.replace("/signup")
 };
 
