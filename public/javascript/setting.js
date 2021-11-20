@@ -38,10 +38,15 @@ async function settingHandler(event){
 };
 // function sendNotification(){
 // }
+
+
+
+
 async function deleteHandler(event){
-  event.preventDefault();
   const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1];
+
+
   event.preventDefault()
   confirm("Are you sure you want to delete this user?")
   if (confirm) {
@@ -52,5 +57,9 @@ async function deleteHandler(event){
     document.location.replace('/login');
   }
 }
+
+
+
 document.querySelector('#btn').addEventListener('click', settingHandler);
-document.querySelector("#del-btn").addEventListener('click', deleteHandler);
+document.querySelector('#del-btn').addEventListener('click', deleteHandler);
+

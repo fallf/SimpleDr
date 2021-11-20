@@ -36,7 +36,4 @@ async function patientAppHandler(event){
 };
 
 
-
-
-
 document.querySelector('#btn').addEventListener('click', patientAppHandler);

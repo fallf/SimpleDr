@@ -107,6 +107,7 @@ router.put('/:id', async (req,res)=>{
            id: req.params.id
        }
    });
+
    //html output
    const output = `
    <h3>Hello ${req.body.p_name},</h3>
@@ -128,12 +129,16 @@ router.put('/:id', async (req,res)=>{
    </footer>
    `
 
+
     //send mail with defined transport object
         let mailOptions = {
-        from: '"SimpleDOc"<simpledoctesting@yahoo.com>', // sender address
+        from: '"SimpleDoc"<simpledoctesting@yahoo.com>', // sender address
         to: `${req.body.p_email}`, //list of receivers 
-        subject: 'Hello',
-        text: 'Hello, thanks for the email!',
+
+
+        subject: 'Consultation Notes',
+        text: 'Consultation Notes',
+>
         html: output, // html body
         };
 
