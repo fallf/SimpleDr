@@ -43,6 +43,7 @@ async function settingHandler(event){
 
 
 async function deleteHandler(event){
+  event.preventDefault();
   const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1];
 

@@ -1,4 +1,6 @@
-async function patientCommnetHandler() {
+async function patientCommnetHandler(event) {
+  event.preventDefault();
+
     const p_doc_comment = document.querySelector('#doc-comment').value.trim();
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1

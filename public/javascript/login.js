@@ -1,5 +1,5 @@
 async function userLoginFormHandler(event) {
-  event.preventDefault();
+   event.preventDefault();
 
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
@@ -25,7 +25,7 @@ async function userLoginFormHandler(event) {
 
 function userSignupRoute() {
 
-  
+
   document.location.replace("/signup")
 };
 
