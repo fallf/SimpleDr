@@ -1,0 +1,42 @@
+{{#if loggedIn}}
+<form class="setting-form">
+    <div class="update-user">
+        <h2 class="update-title">User's Setting</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="name">name</label>
+            <input id="upName" type="text" value="{{user.name}}">
+        </div>
+        <div class="col">
+            <label for="name">Last name</label>
+            <input id="upLname" type="text" value="{{user.last_name}}">
+        </div>
+        <div class="col">
+            <label for="name">Email</label>
+            <input id="upEmail" type="email" value="{{user.email}}">
+        </div>
+        <div class="col">
+            <label for="name">User</label>
+            <input id="userName" type="text" value="{{user.username}}">
+        </div>
+        <div class="col">
+            <label for="name">Password</label>
+            <input id="upPassword" type="password">
+        </div>
+        <div class="col">
+            <input type="radio" name="choice" value="1" id="doc-role"/>
+      <label for="doc-role-signup">Doctor</label>
+      <input type="radio" name="choice" value="2" id="nur-role"/>
+      <label for="nur-role-signup">Nurse</label>
+        </div>
+    </div>
+    <div>
+        <button id="btn">Summit Changes</button>
+    </div>
+    <div>
+        <a href="/profile">Go Back</a>
+    </div>
+</form>
+{{/if}}
+<script src="/javascript/setting.js"></script>

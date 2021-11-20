@@ -24,13 +24,13 @@ const PORT = process.env.PORT || 3001;
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// //register new function
-// hbs.handlebars.registerHelper( "when", function(op1, op2) {
-//     var operators = {
-//         'eq': function (l,r) {return l == r;}
-//     },
-//     result = operators[]
-// }) 
+//register new function
+hbs.handlebars.registerHelper('ifCond', function(v1, options) {
+    if(v1 === 1) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+}) 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:false }));

@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { Role } = require('../../models');
 
 //GET /api/role
-router.get('/', (req, res)=>{
+router.get('/login', (req, res)=>{
 
     Role.findAll({
         attributes:[

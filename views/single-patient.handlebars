@@ -1,0 +1,47 @@
+
+
+{{!--Welcome--}}
+<h2>Welcome</h2>
+<ol class="post-list">
+  {{#if loggedIn}}
+  <li> {{singleUser.role.name}}: {{singleUser.name}} {{singleUser.last_name}}</li>
+ 
+</ol>
+
+
+
+{{!-- pateint list --}}
+<h3>Patient</h3>
+<ol class="doc-list">
+  
+  <li> 
+    <article class="doc">
+      <div class="meta">
+        {{singlePatient.p_lname}}, {{singlePatient.p_name}} 
+      </div>
+      <div id='pat-email'>
+        {{singlePatient.p_email}}   
+      </div>
+
+      {{!-- send patient email --}}
+      <h3>Consultation note</h3>
+      <div class="contact">
+        <form id="email-form">
+        <div class="full">
+            <label>Message: </label>
+            <textarea name="comment-body" rows="5" id="doc-comment"></textarea>
+        </div>
+
+        <div>
+            <button id="update-btn">Submit</button>
+        </div>
+        <div>
+          <a href="/profile">Go back</a>
+        </div>
+        </form>
+      </div>  
+    </article>
+  </li>
+</ol>
+ {{/if}}
+<script src="/javascript/single-patient.js"></script>
