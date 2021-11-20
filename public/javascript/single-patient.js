@@ -8,7 +8,10 @@ async function patientCommnetHandler() {
     const p_condition = document.querySelector('#pat-con').innerText.trim();
     console.log(p_doc_comment)
       console.log(id)
+
+
       
+
     if (p_doc_comment && id && p_email && p_name && p_condition) {
         const response = await fetch(`/api/patient/${id}`, {
             method: 'PUT',

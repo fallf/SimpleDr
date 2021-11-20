@@ -2,39 +2,35 @@
 
 {{!--Welcome--}}
 <h2>Welcome</h2>
-<ol class="post-list">
+
   {{#if loggedIn}}
-  <li> {{singleUser.role.name}}: {{singleUser.name}} {{singleUser.last_name}}</li>
+  <p class="user-name"> {{singleUser.role.name}}: {{singleUser.name}} {{singleUser.last_name}}</p>
  
-</ol>
+
+
+ <div class="card">
+   <div class="title">
+    <h2>Patient Info</h2>
+   </div>
+   <p >Name: <span class="p-info" id="pat-name">{{singlePatient.p_name}}</span></p>
+   <p>Last Name: <span class="p-info">{{singlePatient.p_lname}}</span> </p>
+   <p>Email:<span class="p-info"> {{singlePatient.p_email}}</span></p>
+   <p>Reason for visit: <span class="p-info"> {{singlePatient.p_condition}}</span> </p>
+   <p>Date of Birth: <span class="p-info"> {{singlePatient.p_dob}} </span> </p>
 
 
 
-{{!-- pateint list --}}
-<h3>Patient</h3>
-<ol class="doc-list">
-  
-  <li> 
-    <article class="doc">
-      <div class="meta">
-        <p>Name: {{singlePatient.p_lname}}, {{singlePatient.p_name}}</p>
-        <p id='pat-con'>Symptoms: {{singlePatient.p_condition}}</p>
-      </div>
-      <div id='pat-email'>
-        {{singlePatient.p_email}}   
-      </div>
+      <h3>Consultation note </h3>
 
-      {{!-- send patient email --}}
-      <h3>Consultation note for <span id="pat-name">{{singlePatient.p_name}}</span></h3>
       <div class="contact">
         <form id="email-form">
         <div class="full">
-            <label>Message: </label>
-            <textarea name="comment-body" rows="5" id="doc-comment"></textarea>
+            
+            <textarea placeholder="Doctor's note" class="note-comment" style="resize: none;" name="comment-body" rows="5" id="doc-comment"></textarea>
         </div>
 
         <div>
-            <button id="update-btn">Submit</button>
+            <button class="btn" id="update-btn">Submit</button>
         </div>
         <div>
           <a href="/profile">Go back</a>
@@ -44,5 +40,11 @@
     </article>
   </li>
 </ol>
+ </div>
+
+{{!-- pateint list --}}
+
+      {{!-- send patient email --}}
+      
  {{/if}}
 <script src="/javascript/single-patient.js"></script>

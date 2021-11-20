@@ -107,33 +107,38 @@ router.put('/:id', async (req,res)=>{
            id: req.params.id
        }
    });
-    //html output
-        const output = `
-        <h3>Hello ${req.body.p_name},</h3>
-        <p>Thank you for visiting SimpleDoc hospital today. You can find your consultation note below:</p>
-        <p>${req.body.p_doc_comment}</p>
-        <p>Sincerely,</p>
-        <small>Simple Doc</small>
 
-        <footer style="background-color: #92BDE7; color:#eeeee4; text-align: center; margin: auto auto 1px auto">
-            <h3 style="text-decoration:underline; border-color: #eeeee4; padding:5px">Contact Us</h3>
-	        <ul style="list-style-type:none; padding-bottom: 10px;">
-		        <li>Telephone: (222)222-2222</li>
-                <li>Email: 
-        	        <a style="text-decoration: none; color:#eeeee4" href= "mailto: simpledoctesting@yahoo.com">simpledoctesting@yahoo.com</a>
-                </li>
-                <li>Address: 333 West 59th St.<br>
-        	        10019, New York, New York
-                </li>
-            </ul>
-        </footer>
-        `
+   //html output
+   const output = `
+   <h3>Hello ${req.body.p_name},</h3>
+   <p>Thank you for visiting SimpleDoc hospital today. You can find your consultation note below:</p>
+   <p>${req.body.p_doc_comment}</p>
+   <p>Sincerely,</p>
+   <small>Simple Doc</small>
+   <footer style="background-color: #92BDE7; color:#eeeee4; text-align: center; margin: auto auto 1px auto">
+       <h3 style="text-decoration:underline; border-color: #EEEEE4; padding:5px">Contact Us</h3>
+       <ul style="list-style-type:none; padding-bottom: 10px;">
+           <li>Telephone: (222)222-2222</li>
+           <li>Email:
+               <a style="text-decoration: none; color:#eeeee4" href= "mailto: simpledoctesting@yahoo.com">simpledoctesting@yahoo.com</a>
+           </li>
+           <li>Address: 333 West 59th St.<br>
+               10019, New York, New York
+           </li>
+       </ul>
+   </footer>
+   `
+
+
     //send mail with defined transport object
         let mailOptions = {
         from: '"SimpleDoc"<simpledoctesting@yahoo.com>', // sender address
         to: `${req.body.p_email}`, //list of receivers 
+
+
         subject: 'Consultation Notes',
         text: 'Consultation Notes',
+>
         html: output, // html body
         };
 
