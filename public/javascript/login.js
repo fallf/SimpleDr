@@ -27,5 +27,5 @@ function userSignupRoute() {
   document.location.replace("/signup")
 };
 
-document.querySelector('.user-login-form').addEventListener('submit', userLoginFormHandler);
+document.querySelector('#user-login-form').addEventListener('submit', userLoginFormHandler);
 document.querySelector('#user-signup').addEventListener('click', userSignupRoute);
