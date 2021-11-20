@@ -16,8 +16,6 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-
-
 router.get('/', (req, res)=>{
 
     Patient.findAll({
@@ -47,7 +45,6 @@ router.get('/', (req, res)=>{
         res.status(500).json(err);
     })
 });
-
 
 router.get('/:id', (req,res)=>{
   Patient.findOne({

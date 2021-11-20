@@ -69,15 +69,24 @@ router.get('/profile', async (req, res) => {
         p_doc_comment: null
       }
     })
+
+    const roleData = await Role.findAll({
+      attribute: [
+        'id',
+        'name'
+      ]
+    });
         const user = singleUserData.get({plain: true});
         const doctors = multiUserData.map(user => user.get({plain: true}));
         const patients = patientsData.map(pat => pat.get({plain: true}));
+        const roles = roleData.map(role => role.get({plain: true}));
         // console.log(user.role_id)
         // console.log(req.session)
         res.render('profile', {
           user, 
           doctors,
           patients,
+          roles,
           loggedIn: req.session.loggedIn,
         })    
 });

@@ -9,6 +9,12 @@
   {{/if}}
 </ol>
 
+{{#ifCond user.role_id 1}}
+    {{user.role_id}} is equal {{1}}
+{{else}}
+    {{user.role_id}} is not equal to {{1}}
+{{/ifCond}}
+
 {{!-- patient app handled by role under Nurse --}}
 <h2>Sign Up Patient</h2>
  <section>
@@ -62,9 +68,6 @@
   </li>
   {{/each}}
 </ol>
-
-
-
 
 
 <h2>Patients list</h2>
