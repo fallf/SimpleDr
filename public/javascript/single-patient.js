@@ -1,13 +1,14 @@
-async function patientCommnetHandler() {
+async function patientCommnetHandler(event) {
+    event.preventDefault()
     const p_doc_comment = document.querySelector('#doc-comment').value.trim();
-    const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
     const p_email = document.querySelector('#pat-email').innerText.trim();
     const p_name = document.querySelector('#pat-name').innerText.trim();
     const p_condition = document.querySelector('#pat-con').innerText.trim();
+    const id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
     console.log(p_doc_comment)
-      console.log(id)
+      console.log(id + "Look Here")
 
 
       

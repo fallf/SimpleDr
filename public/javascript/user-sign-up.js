@@ -28,10 +28,29 @@ async function userSignupFormHandler(event) {
     });
     if(response.ok) {
         console.log('success');
+        const validEmail = document.querySelector('#email-signup');
+        const validName = document.querySelector('#name-signup');
+        const validLname = document.querySelector('#lname-signup');
+        const validUser = document.querySelector('#username-signup');
+        validEmail.setAttribute('class','form-control is-valid');
+        validName.setAttribute('class', 'form-control is-valid');
+        validUser.setAttribute('class', 'form-control is-valid');
+        validLname.setAttribute('class', 'form-control is-valid');
         document.location.replace("/login")
     } else {
-        alert(response.statusText);
+      const validEmail = document.querySelector('#email-signup');
+      const validName = document.querySelector('#name-signup');
+      const validLname = document.querySelector('#lname-signup');
+      const validUser = document.querySelector('#username-signup');
+      validEmail.setAttribute('class','form-control is-invalid');
+      validName.setAttribute('class', 'form-control is-invalid');
+      validUser.setAttribute('class', 'form-control is-invalid');
+      validLname.setAttribute('class', 'form-control is-invalid');
+      
+        // alert(response.statusText);
     }
   }
 };
 document.querySelector('.user-signup-form').addEventListener('submit', userSignupFormHandler);
+
+

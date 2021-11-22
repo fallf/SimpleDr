@@ -31,44 +31,51 @@
     {{!-- patient app handled by role under Nurse --}}
 
  <section class="nurse-app">
-    <form class="card">
+    <form class="card row card-patient">
       <div class="app-title">
-        <h1>Patient Application form</h1>
+        <h1>Patient Application Form</h1>
       </div>
-      <div class="app-form">
-       <div class="text-box">
-          <label for="p-name">Name</label>
-          <input placeholder="John" id="p-name"  type="text">
-       </div>
-      <div class="text-box">
-          <label for="p-lname">Last name</label>
-          <input placeholder="Smith" id="p-lname" type="text">
+       <div class="row">
+          {{!-- <div class="app-form"> --}}
+          <div class="text-box form-group col">
+              <label for="p-name">Name</label>
+              <input class="form-control" placeholder="John" id="p-name"  type="text">
+          </div>
+          <div class="text-box form-group col">
+              <label for="p-lname">Last name</label>
+              <input class="form-control" placeholder="Smith" id="p-lname" type="text">
+          </div>
+          <div class="text-box form-group col">
+            <label for="p-email">Email</label>
+            <input class="form-control" placeholder="j.smith@gmailcom" id="p-email" type="email">
+          </div>
       </div>
-      <div class="text-box">
-        <label for="p-email">Email</label>
-        <input placeholder="j.smith@gmailcom" id="p-email" type="email">
       </div>
-      <div class="text-box">
+      <div class="row">
+      <div class="text-box form-group col">
         <label for="p-dob">Date of Birth</label>
-        <input placeholder="01-02-1989" id="p-dob" type="text">
+        <input class="form-control" placeholder="01-02-1989" id="p-dob" type="text">
       </div>
-      <div class="text-box">
+      <div class="text-box form-group col">
         <label for="p-sym">Symtoms</label>
-        <input placeholder="Symtoms" id="p-sym" type="text">
+        <input class="form-control" placeholder="Symtoms" id="p-sym" type="text">
       </div>
-      <div class="text-box">
-        <label for="as-doc-id">Doctor's ID</label>
-        <select  id="as-doc-id">
+      <div class="text-box form-group col">
+        <label for="as-doc-id">Doctors</label>
+        <select  id="as-doc-id" class="custom-select">
           {{#each doctors as |doctor|}}
+          <option value="">--Select--</option>
           <option value="{{doctor.id}}">{{doctor.last_name}}, {{doctor.name}}</option>
           {{/each}}
         </select>
       </div>
-
+     </div>
     </div>
+
       <div class="submit-btn">
         <button class="btn" id="btn">Submit</button>
       </div>
+      <div id="newText"></div>
   </form>
 </section> 
 

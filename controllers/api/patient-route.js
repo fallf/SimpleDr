@@ -3,18 +3,26 @@ const { Patient, User} = require('../../models');
 const nodemailer = require('nodemailer');
 
 // create transporter 
-let transporter = nodemailer.createTransport({
-    host: 'smtp.mail.yahoo.com',
-    port: 587,
-    secure: false,
+// let transporter = nodemailer.createTransport({
+//     host: 'smtp.mail.yahoo.com',
+//     port: 587,
+//     secure: false,
+//     auth: {
+//         user: 'simpledoctesting@yahoo.com',
+//         pass: 'thwgaegabxokxyml',
+//     },
+//     tls:{
+//         rejectUnauthorized: false
+//     }
+// });
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-        user: 'simpledoctesting@yahoo.com',
-        pass: 'thwgaegabxokxyml',
-    },
-    tls:{
-        rejectUnauthorized: false
+      user: 'simpledoctest@gmail.com',
+      pass: 'sfvsf123' // naturally, replace both with your real credentials or an application-specific password
     }
-});
+  });
 
 router.get('/', (req, res)=>{
 
@@ -132,7 +140,7 @@ router.put('/:id', async (req,res)=>{
 
     //send mail with defined transport object
         let mailOptions = {
-        from: '"SimpleDoc"<simpledoctesting@yahoo.com>', // sender address
+        from: '"SimpleDoc Consultation"<simpledoctesting@yahoo.com>', // sender address
         to: `${req.body.p_email}`, //list of receivers 
 
 

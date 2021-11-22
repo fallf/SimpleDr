@@ -6,7 +6,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-// const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 const sess = {
     secret: 'Super secret secret',

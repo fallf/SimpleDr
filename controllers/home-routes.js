@@ -138,7 +138,7 @@ router.get('/patient/:id',withAuth, async (req, res) => {
     res.render('single-patient', {
       singleUser,
       singlePatient,
-      loggedIn: req.session.loggedIn
+      loggedIn: true
     });
   
 });

@@ -18,11 +18,12 @@
   <a class="navbar-brand" href="/login">Simple Doc</a>
   <div>
     {{#if loggedIn}}
+    
      <a href="#">
-          <span class="glyphicon glyphicon-log-out"></span>
+          <span  class="glyphicon glyphicon-log-out"></span>
         </a>
   <button id="logout" class="btn-no-style">Logout<span class="glyphicon glyphicon-log-out"></span></button>
-  <a href="/user/{{user.id}}"> <i class="fa fa-gear" style="font-size:39px"></i></a>
+  <a  class="setting" id="sBtn" href="/user/{{user.id}}"> <i title="setting"  class="fa fa-gear" style="font-size:39px"></i></a>
   {{/if}}
 </div>
 </nav>
@@ -40,3 +41,4 @@
 </body>
 
 </html>
+<script src="/javascript/setting.js"></script>

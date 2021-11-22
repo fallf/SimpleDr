@@ -16,9 +16,15 @@ async function userLoginFormHandler(event) {
     });
 
     if(response.ok) {
+      
       document.location.replace('/profile');
+     
+
     } else {
-      alert(response.statusText);
+      const validateEmail = document.getElementById('email-login');
+      const validatePass = document.getElementById('password-login');
+      validateEmail.setAttribute('class', 'input-box form-control is-invalid');
+      validatePass.setAttribute('class', 'input-box form-control is-invalid');
     }
   }
 }
