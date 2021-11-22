@@ -38,16 +38,9 @@ async function userSignupFormHandler(event) {
         validLname.setAttribute('class', 'form-control is-valid');
         document.location.replace("/login")
     } else {
-      const validEmail = document.querySelector('#email-signup');
-      const validName = document.querySelector('#name-signup');
-      const validLname = document.querySelector('#lname-signup');
-      const validUser = document.querySelector('#username-signup');
-      validEmail.setAttribute('class','form-control is-invalid');
-      validName.setAttribute('class', 'form-control is-invalid');
-      validUser.setAttribute('class', 'form-control is-invalid');
-      validLname.setAttribute('class', 'form-control is-invalid');
       
-        // alert(response.statusText);
+      
+        alert(response.statusText);
     }
   }
 };
